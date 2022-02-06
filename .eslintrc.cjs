@@ -13,6 +13,7 @@ module.exports = {
     sourceType: 'module',
     extraFileExtensions: ['.mts', '.cjs', '.mjs'],
     createDefaultProgram: true,
+    tsconfigRootDir: __dirname,
   },
   plugins: [
     '@typescript-eslint/eslint-plugin',
@@ -62,5 +63,5 @@ module.exports = {
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
   },
-  ignorePatterns: ['dist/*'],
+  ignorePatterns: ['dist/*', '.eslintrc.js', '.env'],
 };
