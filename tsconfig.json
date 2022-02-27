@@ -22,7 +22,6 @@
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
     "importHelpers": true,
     "skipLibCheck": true,
-    "outDir": "./dist/tsc/",
     "types": [
       "node"
     ],
