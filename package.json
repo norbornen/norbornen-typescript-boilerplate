@@ -1,0 +1,51 @@
+{
+  "name": "typescript-boilerplate-2022",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Boilerplate for TypeScript ESM projects",
+  "author": "norbornen",
+  "repository": "https://github.com/norbornen/typescript-boilerplate",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "boilerplate"
+  ],
+  "main": "./dist/tsc-esm/index.js",
+  "types": "./dist/tsc-esm/index.d.ts",
+  "scripts": {
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.mts,.tsx",
+    "test": "yarn lint && tsc --noEmit",
+    "clean": "rm -rf dist/*",
+    "ts-node": "node --loader ts-node/esm --experimental-specifier-resolution=node",
+    "build": "yarn clean && yarn build:esm & yarn build:cjs && yarn esbuild-node:esm && yarn esbuild-node:cjs",
+    "build:esm": "tsc -p tsconfig.build-esm.json",
+    "build:cjs": "tsc -p tsconfig.build-cjs.json",
+    "esbuild-node:esm": "esbuild src/index.ts --bundle --platform=node --format=esm --external:./node_modules/* --sourcemap=external --outfile=dist/esbuild-esm/index.js",
+    "esbuild-node:cjs": "esbuild src/index.ts --bundle --platform=node --format=cjs --target=node16 --external:./node_modules/* --sourcemap=external --outfile=dist/esbuild-cjs/index.cjs",
+    "esbuild-node:dev": "esbuild src/index.ts --bundle --platform=node --format=esm --external:./node_modules/* --sourcemap=external --outfile=dist/esbuild/index.js",
+    "esbuild-node:watch": "esbuild src/index.ts --bundle --platform=node --format=esm --external:./node_modules/* --watch --sourcemap=external --outfile=dist/esbuild/index.js"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.4.5",
+    "@types/node": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "esbuild": "^0.14.49",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import-helpers": "^1.2.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "ora": "^6.1.2"
+  },
+  "engines": {
+    "node": ">= 18.0.0"
+  }
+}
